@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lanzhu.ssp.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.lanzhu.ssp.entities.Order" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="make_user_id" property="makeUserId" jdbcType="INTEGER" />
+    <result column="super_user_id" property="superUserId" jdbcType="INTEGER" />
+    <result column="low_user_id" property="lowUserId" jdbcType="INTEGER" />
+    <result column="pay_super_amount" property="paySuperAmount" jdbcType="DECIMAL" />
+    <result column="pay_low_amount" property="payLowAmount" jdbcType="DECIMAL" />
+    <result column="recieve_addrass" property="recieveAddrass" jdbcType="VARCHAR" />
+    <result column="super_pay_status" property="superPayStatus" jdbcType="BIT" />
+    <result column="low_pay_status" property="lowPayStatus" jdbcType="BIT" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="file_id" property="fileId" jdbcType="INTEGER" />
+    <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+    <result column="updated_by" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_no, make_user_id, super_user_id, low_user_id, pay_super_amount, pay_low_amount, 
+    recieve_addrass, super_pay_status, low_pay_status, status, comment, file_id, created_by, 
+    updated_by, created_time, updated_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <insert id="insert" parameterType="com.lanzhu.ssp.entities.Order" keyProperty="id" useGeneratedKeys="true" >
+    insert into t_order (id, order_no, make_user_id, 
+      super_user_id, low_user_id, pay_super_amount, 
+      pay_low_amount, recieve_addrass, super_pay_status, 
+      low_pay_status, status, comment, 
+      file_id, created_by, updated_by, 
+      created_time, updated_time)
+    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, #{makeUserId,jdbcType=INTEGER}, 
+      #{superUserId,jdbcType=INTEGER}, #{lowUserId,jdbcType=INTEGER}, #{paySuperAmount,jdbcType=DECIMAL}, 
+      #{payLowAmount,jdbcType=DECIMAL}, #{recieveAddrass,jdbcType=VARCHAR}, #{superPayStatus,jdbcType=BIT}, 
+      #{lowPayStatus,jdbcType=BIT}, #{status,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, 
+      #{fileId,jdbcType=INTEGER}, #{createdBy,jdbcType=VARCHAR}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.lanzhu.ssp.entities.Order" >
+    update t_order
+    <set >
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="makeUserId != null" >
+        make_user_id = #{makeUserId,jdbcType=INTEGER},
+      </if>
+      <if test="superUserId != null" >
+        super_user_id = #{superUserId,jdbcType=INTEGER},
+      </if>
+      <if test="lowUserId != null" >
+        low_user_id = #{lowUserId,jdbcType=INTEGER},
+      </if>
+      <if test="paySuperAmount != null" >
+        pay_super_amount = #{paySuperAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payLowAmount != null" >
+        pay_low_amount = #{payLowAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="recieveAddrass != null" >
+        recieve_addrass = #{recieveAddrass,jdbcType=VARCHAR},
+      </if>
+      <if test="superPayStatus != null" >
+        super_pay_status = #{superPayStatus,jdbcType=BIT},
+      </if>
+      <if test="lowPayStatus != null" >
+        low_pay_status = #{lowPayStatus,jdbcType=BIT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="fileId != null" >
+        file_id = #{fileId,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null" >
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null" >
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>
