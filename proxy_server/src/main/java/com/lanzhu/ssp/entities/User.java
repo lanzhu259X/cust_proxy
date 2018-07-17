@@ -1,5 +1,7 @@
 package com.lanzhu.ssp.entities;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.Date;
 
 public class User {
@@ -28,6 +30,31 @@ public class User {
     private Date createdTime;
 
     private Date updatedTime;
+
+    private String identifierType;
+    private String identifier;
+
+    @JSONField(serialize = false)
+    private String credential;
+
+    @JSONField(serialize = false)
+    public User getCompactUser() {
+        User user = new User();
+        user.setId(this.id);
+        user.setCompanyId(this.companyId);
+        user.setPhone(this.phone);
+        user.setUserName(this.userName);
+        user.setParentId(this.parentId);
+        user.setStatus(this.status);
+        user.setUserRole(this.userRole);
+        user.setAvatarUrl(this.avatarUrl);
+        user.setComment(this.comment);
+        user.setCreatedBy(this.createdBy);
+        user.setUpdatedBy(this.updatedBy);
+        user.setCreatedTime(this.createdTime);
+        user.setUpdatedTime(this.updatedTime);
+        return user;
+    }
 
     public Integer getId() {
         return id;
@@ -131,5 +158,29 @@ public class User {
 
     public void setUpdatedTime(Date updatedTime) {
         this.updatedTime = updatedTime;
+    }
+
+    public String getIdentifierType() {
+        return identifierType;
+    }
+
+    public void setIdentifierType(String identifierType) {
+        this.identifierType = identifierType;
+    }
+
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
+    }
+
+    public String getCredential() {
+        return credential;
+    }
+
+    public void setCredential(String credential) {
+        this.credential = credential;
     }
 }

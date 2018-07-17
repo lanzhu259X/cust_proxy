@@ -1,6 +1,6 @@
 package com.lanzhu.ssp.security;
 
-import com.lanzhu.ssp.dao.CompanyMapper;
+import com.lanzhu.ssp.dao.UserAuthMapper;
 import com.lanzhu.ssp.dao.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserMapper userMapper;
     @Autowired
-    private CompanyMapper companyMapper;
+    private UserAuthMapper userAuthMapper;
 
     @Override
     public void configure(WebSecurity webSecurity) throws Exception {
@@ -70,7 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception {
-        builder.authenticationProvider(new UserAuthenticationProvider(userMapper, companyMapper));
+        builder.authenticationProvider(new UserAuthenticationProvider(userMapper, userAuthMapper));
     }
 
 }

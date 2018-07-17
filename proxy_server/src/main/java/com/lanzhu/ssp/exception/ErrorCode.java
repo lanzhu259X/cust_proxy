@@ -4,12 +4,18 @@ import com.alibaba.fastjson.JSONObject;
 
 public enum ErrorCode {
 
+
     USER_NOT_FOUND(1001, "获取用户失败"),
-    USER_PHONE_EMPTY(1002, "用户手机号为空"),
+    PHONE_EMPTY(1002, "用户手机号为空"),
+    PASSWORD_EMPTY(1003, "登录密码为空"),
+    COMPANY_NAME_EMPTY(1004, "公司名称为空"),
+    PHONE_WAS_REGISTERED(1005, "手机号已被注册"),
+    COMPANY_NAME_EXIST(1006, "公司名称已经存在"),
 
 
-    PARAM_ERROR(1000, "参数错误"),
-
+    PARAM_ERROR(9990, "参数错误"),
+    DB_INSER_FAIL(9995, "数据保存失败"),
+    DB_UPDATE_FAIL(9996, "数据修改失败"),
     LOGIN_PASSWORD_INVALID(9997, "登录密码验证失败"),
     LOGIN_USERNAME_MISSING(9998, "登录名缺失"),
     SYS_ERROR(9999, "系统异常");

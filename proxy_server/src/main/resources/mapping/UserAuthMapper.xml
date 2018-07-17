@@ -69,4 +69,9 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
+  <select id="findByIdentifier" resultMap="BaseResultMap" parameterType="map">
+    select <include refid="Base_Column_List"/>
+    from identifier_type = #{identifierType} and identifier = #{identifier}
+  </select>
+
 </mapper>

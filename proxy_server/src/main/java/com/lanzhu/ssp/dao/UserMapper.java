@@ -12,4 +12,11 @@ public interface UserMapper {
 
     int updateByPrimaryKeySelective(User record);
 
+    /**
+     * 带上手机号验证密码信息
+     * @param phone
+     * @return
+     */
+    User findByPhone(String phone);
+
 }

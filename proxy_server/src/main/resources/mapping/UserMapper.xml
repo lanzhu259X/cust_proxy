@@ -83,4 +83,15 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
+  <select id="findByPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+      u.*,
+      a.identifier_type as identifierType,
+      a.identifier as identifier,
+      a.credential as credential
+    from t_user u, t_user_auths a
+    where u.id = a.user_id and u.phone = #{phone}
+    and a.identifier_type = 'PHONE' and u.status = 'NORMAL'
+  </select>
+
 </mapper>
